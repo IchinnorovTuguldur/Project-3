@@ -1,0 +1,66 @@
+'''function'''
+
+def search_results(original_list, search_query):
+
+  '''
+  parameters represent list of strings, and the second one is query string. 
+  intend to return value that is list of results
+  ''' 
+
+
+  new_list = []
+
+  if search_query == '':
+    return new_list
+
+  for i in range(len(original_list)):
+
+    # split item of lists of original list, eg ['1, 2', '3, 4'] becomes [['1', '2'], ['3', '4']]
+
+    new_original_list = original_list[i].split()
+    
+    for j in range(len(new_original_list)):
+
+      # check if query matches any subitem
+      
+      
+      if search_query.upper() in new_original_list[j].upper():
+    
+        new_list.append(original_list[i])
+
+  return new_list
+
+
+
+
+'''
+main part
+'''
+
+list_of_items = ['apple', 'banana', 'grape', 'orange']
+
+
+while True:
+
+  search_query = input('Enter search query (blank to exit):')
+
+  if search_query == '':
+    break
+
+  a = search_results(list_of_items, search_query)
+
+  if a != []:
+
+      for i in a:
+        print(i)
+    
+  elif a == []:
+
+      print("Not found. Would you like to add the item you were looking for?")
+      
+      new_item = input('Enter new item (or blank to skip): ')
+      if new_item != '':
+        list_of_items.append(new_item)
+      
+      else:
+        continue
